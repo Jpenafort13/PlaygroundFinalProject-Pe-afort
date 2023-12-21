@@ -1,0 +1,44 @@
+{% extends 'Base/baseHead.html' %}
+
+{% block bloque_titulo %}
+        AuraGym | Alumnos | Borrar Conversacion
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Borrar Conversacion
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    {% if request.user == chat.user_chat_1 %}
+        <h3 class="clase-nombre">
+            {% if chat.user_chat_2.get_full_name %}
+                Estás a punto de borrar la conversacion con {{ chat.user_chat_2.get_full_name }}
+            {% else %}
+                Estás a punto de borrar la conversacion con {{ chat.user_chat_2.username }}
+            {% endif %}
+        </h3>
+    {% else %}
+        <h3 class="clase-nombre">
+            {% if chat.user_chat_1.get_full_name %}
+                Estás a punto de borrar la conversacion con {{ chat.user_chat_1.get_full_name }}
+            {% else %}
+                Estás a punto de borrar la conversacion con {{ chat.user_chat_1.username }}
+            {% endif %}
+        </h3>
+    {% endif %}
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container px-4 px-lg-5">
+            <form class="p-3 p-lg-4 lead fst-italic" method="POST">
+                {% csrf_token %}
+                <p>¿Desea borrar la conversación?</p>
+                <div>
+                    <button class="btn btn-outline-primary fst-italic"><i class="bi bi-trash"></i> Borrar</button>
+                    <a class="btn btn-outline-danger fst-italic" href={% url 'ver_chat' chat.id %} role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

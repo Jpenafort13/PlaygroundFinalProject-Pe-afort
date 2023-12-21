@@ -1,0 +1,30 @@
+{% extends 'Base/baseHead.html' %}
+{% block bloque_titulo %}
+    AuraGym | Editar
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Editar publicación
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Actualizá el contenido de esta publicación
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container">
+            <form class="p-3 p-lg-4" action={% url 'editar_clase' clase.id %} method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table table-borderless col-md-5 fst-italic">
+                    {{ form.media }}
+                    {{ form }}
+                </table>
+                <div>
+                    <button class="btn btn-outline-primary fst-italic"><i class="bi bi-bookmark"></i> Editar</button>
+                    <a class="btn btn-outline-danger fst-italic" href={% url 'ver_clase' clase.id %} role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

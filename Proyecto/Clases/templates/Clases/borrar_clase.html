@@ -1,0 +1,28 @@
+{% extends 'Base/baseHead.html' %}
+
+{% block bloque_titulo %}
+        AuraGym | Clases | Borrar
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Eliminar clase
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Estás a punto de eliminar esta clase
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container px-4 px-lg-5">
+            <form class="p-3 p-lg-4 lead fst-italic" method="POST">
+                {% csrf_token %}
+                <p>¿Desea eliminar la clase?</p>
+                <div>
+                    <button class="btn btn-outline-primary fst-italic"><i class="bi bi-trash"></i> Eliminar</button>
+                    <a class="btn btn-outline-danger fst-italic" href={% url 'ver_clase' clase.id %} role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}
